@@ -27,7 +27,7 @@ const bootServer = async () => {
     // APIs v1
     app.use('/v1', apiV1)
 
-    app.listen(process.env.APP_PORT, () => {
-        console.log(`App is running at host:${process.env.APP_PORT}`)
+    app.listen(process.env.PORT, () => {
+        console.log(`App is running at host:${process.env.PORT}`)
     })
 }
