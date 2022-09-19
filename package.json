@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "APIs for trello web",
     "main": "src/server.js",
-    "type": "module",
+    "type": "module.cjs",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "clean": "rm -rf build && mkdir build",

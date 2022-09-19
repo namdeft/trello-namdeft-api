@@ -19,11 +19,6 @@ connectDB()
 const bootServer = async () => {
     const app = express()
 
-    // var corsOptionss = {
-    //     origin: 'http://localhost:3000',
-    //     optionsSuccessStatus: 200,
-    // }
-
     app.use(cors(corsOptionsDelegate))
 
     // body-parser json data
@@ -32,7 +27,7 @@ const bootServer = async () => {
     // APIs v1
     app.use('/v1', apiV1)
 
-    app.listen(env.APP_PORT || process.env.APP_PORT, () => {
+    app.listen(process.env.APP_PORT, () => {
         console.log(`App is running at host:${process.env.APP_PORT}`)
     })
 }
