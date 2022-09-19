@@ -32,7 +32,7 @@ const bootServer = async () => {
     // APIs v1
     app.use('/v1', apiV1)
 
-    app.listen(env.APP_PORT, env.APP_HOST, () => {
-        console.log(`App is running at ${env.APP_HOST}:${env.APP_PORT}`)
+    app.listen(env.APP_PORT || process.env.APP_PORT, () => {
+        console.log(`App is running at host:${process.env.APP_PORT}`)
     })
 }
