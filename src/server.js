@@ -4,7 +4,7 @@ import cors from 'cors'
 import { corsOptionsDelegate } from './config/cors.js'
 
 import { connectDB } from './config/mongodb.js'
-// import { env } from './config/environment.js'
+import { env } from './config/environment.js'
 
 import { apiV1 } from './routes/v1/index.js'
 
@@ -27,7 +27,7 @@ const bootServer = async () => {
     // APIs v1
     app.use('/v1', apiV1)
 
-    app.listen(process.env.PORT || 8080, () => {
-        console.log(`App is running at host:${process.env.PORT}`)
+    app.listen(env.APP_PORT || 8080, () => {
+        console.log(`App is running at host:${env.APP_PORT}`)
     })
 }
