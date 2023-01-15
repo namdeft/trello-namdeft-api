@@ -29,7 +29,6 @@ const getBoard = async (id) => {
                 (card) => card.columnId.toString() === column._id.toString()
             )
         })
-        console.log(boardClone)
 
         delete boardClone.cards
 

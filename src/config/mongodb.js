@@ -17,6 +17,6 @@ export const connectDB = async () => {
 
 export const getDB = () => {
     if (!dbInstance) throw new Error('Must connect database first')
-    console.log(dbInstance)
+    // console.log(dbInstance)
     return dbInstance
 }
