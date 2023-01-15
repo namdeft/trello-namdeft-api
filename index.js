@@ -1,12 +1,12 @@
 import express from 'express'
 
 import cors from 'cors'
-import { corsOptionsDelegate } from './config/cors.js'
+import { corsOptionsDelegate } from './src/config/cors.js'
 
-import { connectDB } from './config/mongodb.js'
-import { env } from './config/environment.js'
+import { connectDB } from './src/config/mongodb.js'
+import { env } from './src/config/environment.js'
 
-import { apiV1 } from './routes/v1/index.js'
+import { apiV1 } from './src/routes/v1/index.js'
 
 connectDB()
     .then(() => console.log('connected to database'))
