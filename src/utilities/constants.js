@@ -5,4 +5,8 @@ export const httpStatusCode = {
     NOT_FOUND: 404,
     INTERNAL_SERVER: 500,
 }
-export const whiteList = ['http://localhost:3000', 'http://localhost:8080']
+export const whiteList = [
+    'http://localhost:3000',
+    'http://localhost:8080',
+    'https://trello-namdeft-api.vercel.app',
+]
