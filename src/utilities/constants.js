@@ -9,4 +9,5 @@ export const whiteList = [
     'http://localhost:3000',
     'http://localhost:8080',
     'https://trello-namdeft-api.vercel.app',
+    'https://trello-clone-web-ten.vercel.app',
 ]
