@@ -1,11 +1,11 @@
-import Joi from 'joi'
+import Joi from 'joi';
 
-const { ObjectId } = pkg
-import pkg from 'mongodb'
+const { ObjectId } = pkg;
+import pkg from 'mongodb';
 
-import { getDB } from '../config/mongodb.js'
+import { getDB } from '../config/mongodb.js';
 
-const cardCollectionName = 'cards'
+const cardCollectionName = 'cards';
 
 const cardCollectionSchema = Joi.object({
     boardId: Joi.string().required(),
@@ -15,47 +15,47 @@ const cardCollectionSchema = Joi.object({
     createAt: Joi.date().timestamp().default(Date.now()),
     updateAt: Joi.date().timestamp().default(null),
     _destroy: Joi.boolean().default(false),
-})
+});
 
 const validateSchema = async (data) => {
-    return cardCollectionSchema.validateAsync(data, { abortEarly: false })
-}
+    return cardCollectionSchema.validateAsync(data, { abortEarly: false });
+};
 
 const createNew = async (data) => {
     try {
-        const validateValue = await validateSchema(data)
+        const validateValue = await validateSchema(data);
         const insertValue = {
             ...validateValue,
             boardId: ObjectId(validateValue.boardId),
             columnId: ObjectId(validateValue.columnId),
-        }
-        const result = await getDB().collection(cardCollectionName).insertOne(insertValue)
+        };
+        const result = await getDB().collection(cardCollectionName).insertOne(insertValue);
 
-        return result.ops[0]
+        return result.ops[0];
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
-}
+};
 
 const deleteManyCard = async (ids) => {
-    const tranformIds = ids.map((item) => ObjectId(item))
+    const tranformIds = ids.map((item) => ObjectId(item));
     try {
         const result = await getDB()
             .collection(cardCollectionName)
-            .updateMany({ _id: { $in: tranformIds } }, { $set: { _destroy: true } })
+            .updateMany({ _id: { $in: tranformIds } }, { $set: { _destroy: true } });
 
-        return result
+        return result;
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
-}
+};
 
 const update = async (id, data) => {
     const updatedData = {
         ...data,
         boardId: ObjectId(data.boardId),
         columnId: ObjectId(data.columnId),
-    }
+    };
     try {
         const result = await getDB()
             .collection(cardCollectionName)
@@ -63,12 +63,12 @@ const update = async (id, data) => {
                 { _id: ObjectId(id) },
                 { $set: updatedData },
                 { returnOriginal: false }
-            )
+            );
 
-        return result
+        return result;
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
-}
+};
 
-export const CardModel = { createNew, cardCollectionName, deleteManyCard, update }
+export const CardModel = { createNew, cardCollectionName, deleteManyCard, update };
